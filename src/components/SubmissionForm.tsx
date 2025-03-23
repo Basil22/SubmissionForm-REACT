@@ -109,7 +109,7 @@ function SubmissionForm() {
       sx={{ p: 4, maxWidth: 500, mx: "auto", borderRadius: 2, mt: 4 }}
     >
       {/* Form Heading */}
-      <MyFormHeading heading="Form In React" />
+      <MyFormHeading heading="Application Form" />
 
       {/* Input Fields */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
