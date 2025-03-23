@@ -20,7 +20,7 @@ function SubmissionForm() {
 
   const [formData, setFormData] = useState(initialState);
   const [gender, setGender] = useState("");
-  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+  const [selectedChoices, setSelectedChoices] = useState<string[]>([]);
   const [fileName, setFileName] = useState<string | null>("");
   const [selectedAnswer, setSelectedAnswer] = useState<string | "">("");
 
@@ -53,7 +53,7 @@ function SubmissionForm() {
 
     if (!gender) newErrors.gender = "Gender is required";
 
-    if (selectedSubjects.length === 0) {
+    if (selectedChoices.length === 0) {
       newErrors.selectedSubjects = "At least one subject is required.";
     }
 
@@ -79,7 +79,7 @@ function SubmissionForm() {
 
   const handleCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSelectedSubjects((prevState) =>
+    setSelectedChoices((prevState) =>
       prevState.includes(value)
         ? prevState.filter((item) => item !== value)
         : [...prevState, value]
@@ -89,7 +89,7 @@ function SubmissionForm() {
   const handleReset = () => {
     setFormData(initialState);
     setGender("");
-    setSelectedSubjects([]);
+    setSelectedChoices([]);
     setFileName(null);
     setSelectedAnswer("");
     setErrors({});
@@ -153,17 +153,17 @@ function SubmissionForm() {
           </Typography>
         )}
 
-        {/* Best Subject Checkbox */}
+        {/* Checkbox */}
         <MyCheckBox
-          formlabel="My Best Subject"
+          formlabel="Skills"
           groupStyle="row"
           required
           label={[
-            { labels: "English" },
-            { labels: "Math" },
-            { labels: "Science" },
+            { labels: "Java" },
+            { labels: "React" },
+            { labels: "Angular" },
           ]}
-          value={selectedSubjects}
+          value={selectedChoices}
           onChange={handleCheckBoxChange}
         />
         {errors.selectedSubjects && (
@@ -181,9 +181,14 @@ function SubmissionForm() {
 
         {/* Select Your Choice */}
         <MyChoiceSelections
-          formlabel="Select Your Choice"
+          formlabel="Experience"
           required
-          values={[{ value: "10" }, { value: "20" }, { value: "30" }]}
+          values={[
+            { value: "< 1year" },
+            { value: "1-3years" },
+            { value: "3-5years" },
+            { value: "> 5years" },
+          ]}
           selectedAnswer={selectedAnswer}
           setSelectedAnswer={setSelectedAnswer}
         />
